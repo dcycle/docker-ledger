@@ -13,7 +13,14 @@ Features
 Examples
 -----
 
-    docker run --rm -v $PWD/examples:/data dcycle/ledger -f /data/sample.dat reg
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/sample.dat reg
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat reg
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/sample.dat balance
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat balance
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat register Groceries
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat balance Groceries
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat register payee "Organic"
+    docker run --rm -v $PWD/examples:/data dcycle/ledger:1 -f /data/drewr3.dat cleared
 
 Resources and links:
 -----
