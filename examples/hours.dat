@@ -1,0 +1,9 @@
+; -*- ledger -*-
+; Example of how to track hours
+
+2010/12/01 * Hourly balance
+  Assets:Due:Client1:Ticket2                   65 HOURS @ 65 CAD
+  Assets:Due:Client1:Ticket3                   65 HOURS @ 65 CAD
+  Assets:Due:Client2:Ticket3                   65 HOURS @ 65 CAD
+  Assets:Due:Client2:Ticket4                   65 HOURS @ 65 CAD
+  Expenses:Hours

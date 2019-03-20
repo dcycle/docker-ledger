@@ -1,0 +1,26 @@
+; More about this file at
+; https://blog.dcycle.com/blog/2019-03-04
+
+2019/01/01 * Invoice 1
+    Assets:receivable     $5,000.00
+    Income:income
+
+2019/01/01 * Invoice 2
+    Assets:receivable     5000 CAD @ $.75
+    Income:income
+
+2019/01/12 * Payment
+    Assets:receivable     -5000 CAD @ $.75
+    Assets:bankAccount
+
+2019/01/12 * Payment
+    Assets:receivable     -$2500
+    Assets:bankAccount
+
+2019/01/15 * Hosting
+    Liabilities:payable   -$500
+    Expenses:hosting
+
+2019/01/15 * Hosting
+    Liabilities:payable   $250
+    Assets:bankAccount

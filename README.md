@@ -28,3 +28,4 @@ Resources and links:
 * [Ledger 3 manual](https://www.ledger-cli.org/3.0/doc/ledger3.html).
 * [dcycle/ledger the Docker Hub](https://hub.docker.com/r/dcycle/ledger/).
 * [dcycle/ledger the Github](https://github.com/dcycle/docker-ledger/).
+* [Command-line, double-entry accounting for agencies](https://blog.dcycle.com/blog/2019-03-04).
