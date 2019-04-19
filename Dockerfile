@@ -1,21 +1,16 @@
-FROM ubuntu
+# Docker microimage based on Alpine Linux.
+FROM alpine
+# Add the edge and testing repositories.
+RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
+     echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+     apk update && apk upgrade
+# Install ledger and dependencies.     
+RUN apk add ledger
 
-RUN apt-get -y update
-RUN apt-get -y install build-essential cmake doxygen \
-     libboost-system-dev libboost-dev python-dev gettext git \
-     libboost-date-time-dev libboost-filesystem-dev \
-     libboost-iostreams-dev libboost-python-dev libboost-regex-dev \
-     libboost-test-dev libedit-dev libgmp3-dev libmpfr-dev texinfo
+# Set the working directory for the following instructions. It's like 'cd'.
+#WORKDIR /app/ledger
 
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -y install tzdata
+# Add the source (1) to the filesystem at the destination (2).
+#ADD . /app
 
-RUN mkdir /app
-
-RUN cd /app && git clone git://github.com/ledger/ledger.git
-
-WORKDIR /app/ledger
-
-RUN ./acprep update
-
-ENTRYPOINT [ "./ledger" ]
+ENTRYPOINT [ "./usr/bin/ledger" ]
