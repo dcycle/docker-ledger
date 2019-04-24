@@ -1,5 +1,5 @@
 set -e
-docker pull ubuntu
+docker pull alpine
 docker pull dcycle/ledger:1
 docker build -t local-dcycle-ledger-image .
 
