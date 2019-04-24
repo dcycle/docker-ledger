@@ -22,7 +22,7 @@ MAJORVERSION='1'
 VERSION='1.0'
 
 # Start by getting the latest version of the official node image
-docker pull node
+docker pull alpine
 # Rebuild the entire thing
 docker build --no-cache -t dcycle/"$PROJECT":"$VERSION" .
 docker build -t dcycle/"$PROJECT":"$MAJORVERSION" .
