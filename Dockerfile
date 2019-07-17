@@ -13,4 +13,4 @@ RUN apk add ledger
 # Add the source (1) to the filesystem at the destination (2).
 #ADD . /app
 
-ENTRYPOINT [ "./usr/bin/ledger" ]
+ENTRYPOINT [ "/usr/bin/ledger" ]
