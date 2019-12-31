@@ -1,10 +1,11 @@
 # Docker microimage based on Alpine Linux.
-FROM alpine
+# See https://github.com/ledger/ledger/issues/1849
+FROM alpine:3.10
 # Add the edge and testing repositories.
 RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
      echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
      apk update && apk upgrade
-# Install ledger and dependencies.     
+# Install ledger and dependencies.
 RUN apk add ledger
 
 # Set the working directory for the following instructions. It's like 'cd'.
