@@ -1,0 +1,16 @@
+; This file originally copied from
+; https://www.ledger-cli.org/3.0/doc/ledger3.html#Embedded-Python
+
+python
+    import os
+    def check_path(path_value):
+        print "%s => %s" % (str(path_value), os.path.isfile(str(path_value)))
+        return os.path.isfile(str(path_value))
+
+tag PATH
+    assert check_path(value)
+
+2012-02-29 KFC
+    ; PATH: somebogusfile.dat
+    Expenses:Food                $20
+    Assets:Cash
