@@ -1,6 +1,6 @@
 # Docker microimage based on Alpine Linux.
 # See https://github.com/ledger/ledger/issues/1849
-FROM alpine:3.10
+FROM python:rc-alpine3.10
 # Add the edge and testing repositories.
 RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
      echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
