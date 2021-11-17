@@ -30,6 +30,6 @@ Resources and links:
 
 * [What if accounting worked like software development? Command-line, double-entry accounting for agencies, Dcycle Blog, March 4, 2019](https://blog.dcycle.com/blog/2019-03-04/accounting/)
 * [Ledger 3 manual](https://www.ledger-cli.org/3.0/doc/ledger3.html).
-* [dcycle/ledger the Docker Hub](https://hub.docker.com/r/dcycle/ledger/).
-* [dcycle/ledger the Github](https://github.com/dcycle/docker-ledger/).
+* [dcycle/ledger on the Docker Hub](https://hub.docker.com/r/dcycle/ledger/).
+* [dcycle/ledger on the Github](https://github.com/dcycle/docker-ledger/).
 * [Command-line, double-entry accounting for agencies](https://blog.dcycle.com/blog/2019-03-04).
