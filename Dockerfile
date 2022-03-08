@@ -7,10 +7,4 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories &
 # Install ledger and dependencies.
 RUN apk add ledger
 
-# Set the working directory for the following instructions. It's like 'cd'.
-#WORKDIR /app/ledger
-
-# Add the source (1) to the filesystem at the destination (2).
-#ADD . /app
-
 ENTRYPOINT [ "/usr/bin/ledger" ]
