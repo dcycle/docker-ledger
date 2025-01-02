@@ -1,0 +1,157 @@
+<!-- Dcycle Documentation 1.1 -->
+<!-- This file displays the README with a table of contents as a web page -->
+<!-- See https://documentation.dcycle.com -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      pre {
+        background: #ccc;
+        padding: 30px;
+        border-radius: 20px;
+        font-weight: bold;
+      }
+      .toc-list a {
+        color: black;
+      }
+      .back-to-top a {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #333;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .about-documentation {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="mb-5">
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand put-title-here">...</a>
+        </div>
+      </div>
+    </header>
+    <main role="main">
+      <section style="display:none;" class="unhide-if-errors mb-5">
+        <div class="container">
+          <div class="alert alert-danger put-errors-here" role="alert">
+          </div>
+        </div>
+      </section>
+      <section class="mb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm col-lg-3">
+              <div class="back-to-top">
+                <a href="#">Back to top</a>
+              </div>
+              <div class="put-table-of-contents-here"></div>
+            </div>
+            <div class="col-sm col-lg-9">
+              <div class="put-content-here"></div>
+              <div class="about-documentation">
+                Documentation layout was created using <a href="https://documentation.dcycle.com">Dcycle Documentation</a> from a README.md file.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.4/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.30.0/tocbot.min.js"></script>
+    <script>
+      class MyDocumentation {
+        static async init() {
+          const instance = this.instance();
+          try {
+            instance.preflight();
+            const markdown = await instance.readReadme();
+            const renderer = new marked.Renderer();
+            renderer.heading = function(text, level) {
+              const id = text.text.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-');
+              return `<h${text.depth} id="${id}">${text.text}</h${text.depth}>`;
+            }
+            marked.setOptions({renderer});
+            const html = marked.parse(markdown);
+            instance.placeHtml(html);
+            instance.createTableOfContents();
+            instance.setTitle();
+          }
+          catch (error) {
+            instance.showError(error);
+          }
+        }
+        getTitleFromMarkup() {
+          const candidate = document.querySelector('h1');
+          const candidateText = candidate ? candidate.textContent : null;
+          if (candidateText) {
+            return candidateText;
+          }
+          return 'Documentation';
+        }
+        setTitle() {
+          const title = this.getTitleFromMarkup();
+          document.querySelector('.put-title-here').textContent = title;
+          document.title = title;
+        }
+        createTableOfContents() {
+          // See https://tscanlin.github.io/tocbot/#options
+          tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '.put-table-of-contents-here',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: '.put-content-here',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h2, h3, h4, h5, h6',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+            orderedList: false,
+          });
+        }
+        placeHtml(html) {
+          var new_elem = document.createElement('div');
+          new_elem.innerHTML = html;
+          document.querySelector('.put-content-here').appendChild(new_elem);
+        }
+        preflight() {
+          if (location.protocol == 'file:') {
+            throw ('Cannot read README.md file from file:// protocol. You might want to try: python3 -m http.server; see https://documentation.dcycle.com for more details.');
+          }
+        }
+        async readReadme(callback) {
+          const response = await fetch('./README.md');
+
+          if (!response.ok) {
+            throw ('Could not read README.md file, make sure it exists');
+          }
+
+          return response.text();
+        }
+        showError(error) {
+          document.querySelector(".unhide-if-errors").style.display = "block";
+          document.querySelector('.put-errors-here').textContent = error;
+        }
+        static instance() {
+          if (!this._instance) {
+            this._instance = new this();
+          }
+          return this._instance;
+        }
+      }
+      document.addEventListener("DOMContentLoaded", function(event) {
+        MyDocumentation.init();
+      });
+    </script>
+  </body>
+</html>

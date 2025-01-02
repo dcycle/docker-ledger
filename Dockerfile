@@ -1,17 +1,8 @@
-# Docker microimage based on Alpine Linux.
-# See https://github.com/ledger/ledger/issues/1849
-FROM python:rc-alpine3.10
-# Add the edge and testing repositories.
-RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-     echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-     apk update && apk upgrade
-# Install ledger and dependencies.
-RUN apk add ledger
-
-# Set the working directory for the following instructions. It's like 'cd'.
-#WORKDIR /app/ledger
-
-# Add the source (1) to the filesystem at the destination (2).
-#ADD . /app
+FROM alpine:edge
+# Add the edge repository, use global Alpine CDN mirror.
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+  apk update && \
+  apk upgrade && \
+  apk add --no-cache python3 py3-pip ledger
 
 ENTRYPOINT [ "/usr/bin/ledger" ]
