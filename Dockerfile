@@ -4,6 +4,6 @@ FROM alpine:edge
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
   apk update && \
   apk upgrade && \
-  apk add ledger
+  apk add --no-cache python3 py3-pip ledger
 
 ENTRYPOINT [ "/usr/bin/ledger" ]
