@@ -1,7 +1,9 @@
+Dcycle Docker Ledger
+=====
+
 [![CircleCI](https://circleci.com/gh/dcycle/docker-ledger.svg?style=svg)](https://circleci.com/gh/dcycle/docker-ledger)
 
 Dockerized version of the [Ledger-cli accounting software](https://github.com/ledger/ledger), automatically updated weekly.
-
 
 Features
 -----
