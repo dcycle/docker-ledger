@@ -1,7 +1,7 @@
 Dcycle Docker Ledger
 =====
 
-[![GitHub Actions](https://github.com/dcycle/docker-jenkins/actions/workflows/config.yml/badge.svg)](../../actions/workflows/config.yml)
+[![GitHub Actions](https://github.com/dcycle/docker-ledger-fork/actions/workflows/config.yml/badge.svg)](../../actions/workflows/config.yml)
 
 Dockerized version of the [Ledger-cli accounting software](https://github.com/ledger/ledger), automatically updated weekly.
 
